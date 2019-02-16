@@ -13,12 +13,7 @@ export default class ModuleList extends React.Component {
       module: {
           id:0,
           title: 'New Module',
-          lessons: [{
-            title: 'New Lesson',
-            topics: [{
-              title: 'New Topic'
-            }]
-          }]
+          lessons: []
         }}
   }
 
@@ -37,13 +32,8 @@ export default class ModuleList extends React.Component {
          module: {
           id:this.state.module.id,
           title: event.target.value,
-          lessons: [{
-            title: 'New Lesson',
-            topics: [{
-              title: 'New Topic'
-            }]
-          }]
-        }
+          lessons: this.state.lessons
+          }
      });
 
 
@@ -92,7 +82,7 @@ export default class ModuleList extends React.Component {
                 placeholder="New Module"/>
               <button
                 onClick={this.handleClick}
-                className="btn btn-primary"><i className="fa fa-plus">+</i></button>
+                className="btn btn-primary"><i className="fa fa-plus"></i></button>
             </div>
           </li>
           { this.props.course.modules.length!==0 &&
@@ -114,7 +104,7 @@ export default class ModuleList extends React.Component {
           }
         </ul>
         </div>
-      { this.props.course.modules[this.state.selectedModuleIndex].lessons.length!==0 &&
+      { 
         <div className="col-8">
           <LessonTabs 
             module={this.props.course.modules[this.state.selectedModuleIndex]}

@@ -11,9 +11,7 @@ export default class LessonTabs extends React.Component {
           lesson: {
             id: 0,
             title: 'New Lesson',
-            topics: [{
-              title: 'New Topic'
-            }]
+            topics: []
           }
         }
   }
@@ -31,9 +29,7 @@ export default class LessonTabs extends React.Component {
           lesson: {
             id: this.state.lesson.id,
             title: event.target.value,
-            topics: [{
-              title: 'New Topic'
-            }]
+            topic: this.state.topics
           }
      });
 
@@ -74,7 +70,8 @@ export default class LessonTabs extends React.Component {
     return (
       <div>
         <ul className="nav nav-tabs">
-          {
+          { 
+    
             this.props.module.lessons.map(
               (lesson, i) => {
                 return (
@@ -103,16 +100,15 @@ export default class LessonTabs extends React.Component {
             </div>
           </li>
         </ul>
+        <br/>
       { 
-        this.props.module.lessons[this.state.selectedLessonIndex].topics.length!==0 &&
-        <div className="col-8">
+        this.props.module.lessons.length!==0 &&
           <TopicPills 
             lesson={this.props.module.lessons[this.state.selectedLessonIndex]}
             createTopic={this.createTopic}
             deleteTopic={this.deleteTopic}
             updateTopic={this.updateTopic}
             />
-        </div>
       }
       </div>
     )

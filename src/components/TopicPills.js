@@ -1,11 +1,17 @@
-
 import React from 'react'
 import PillItem from "./PillItem";
 import LessonItem from './LessonItem'
 import ReactDOM from "react-dom";
+
+import WidgetListContainer from '../containers/WidgetListContainer'
+import widgetReducer from '../reducers/WidgetReducer'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+
 export default class TopicPills extends React.Component {
   constructor(props) {
     super(props);
+    this.store = createStore(widgetReducer);
     console.log(props.lesson);
     this.state = {
       update: 0,
@@ -19,6 +25,7 @@ export default class TopicPills extends React.Component {
 
 
   selectTopic = (index) => {
+    console.log(index)
     this.setState({
       selectedTopicIndex: index
     })
@@ -54,6 +61,7 @@ export default class TopicPills extends React.Component {
       <div>
         <ul className="nav nav-pills">
           {
+            this.props.lesson.length!==0 &&
             this.props.lesson.topics.map(
               (topic, i) => {
                 return (
@@ -82,6 +90,9 @@ export default class TopicPills extends React.Component {
             </div>
           </li>
         </ul>
+            <Provider store={this.store}>
+              <WidgetListContainer/>
+            </Provider>
       </div>
     )
   }
