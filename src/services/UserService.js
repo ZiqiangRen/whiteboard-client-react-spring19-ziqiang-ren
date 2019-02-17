@@ -1,5 +1,5 @@
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-//const proxyUrl = ''
+//const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+const proxyUrl = ''
 const USER_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/user';
 const LOGIN_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/login';
 const LOGOUT_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/logout';
