@@ -5,6 +5,10 @@ import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
 import CourseList from './CourseList';
+import welcome from './welcome'
+import login from './login'
+import register from './register'
+import profile from './profile'
 class WhiteBoard extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +54,6 @@ class WhiteBoard extends Component {
         </div>  
         <Router>
           <div>
-            <Link className="btn btn-success" to="/courselist">To List</Link>
             <Route path='/courselist' 
                    exact
                    render={() =>
@@ -59,8 +62,21 @@ class WhiteBoard extends Component {
             <Route path="/course/:id"
                    exact
                    component={CourseEditor}/>
-                   
+
             <Route path='/' 
+                    exact
+                   component={welcome}/>
+            <Route path='/login' 
+                    exact
+                   component={login}/>
+            <Route path='/register' 
+                    exact
+                   component={register}/>
+            <Route path='/profile' 
+                    exact
+                   component={profile}/>
+
+            <Route path='/grid' 
                    exact
                    render={() =>
                      <CourseGrid
