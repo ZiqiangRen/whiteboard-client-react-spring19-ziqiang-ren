@@ -72,7 +72,6 @@ export default class ModuleList extends React.Component {
     return (
       <div className="row">
         <div className="col-4">
-        <h3>Module List {this.props.course.modules[0].title}</h3>
         <ul className="list-group">
           <li className="list-group-item">
             <div className="input-group">
@@ -104,7 +103,7 @@ export default class ModuleList extends React.Component {
           }
         </ul>
         </div>
-      { 
+      { this.props.course.modules.length!==0 &&
         <div className="col-8">
           <LessonTabs 
             module={this.props.course.modules[this.state.selectedModuleIndex]}

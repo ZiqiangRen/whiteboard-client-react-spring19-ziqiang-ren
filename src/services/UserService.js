@@ -1,4 +1,5 @@
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+//const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+const proxyUrl = ''
 const USER_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/user';
 const LOGIN_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/login';
 const LOGOUT_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/logout';
@@ -22,6 +23,7 @@ class UserService {
       body: JSON.stringify(nameandpin),
       headers: {
       'Content-Type': 'application/json' },
+      credentials:'include',
       method: 'POST'
       })
       .then(response =>
@@ -33,14 +35,23 @@ class UserService {
       body: JSON.stringify({}),
       headers: {
       'Content-Type': 'application/json' },
+      credentials:'include',
       method: 'POST'
       })
       .then(response =>
          response.json()); 
 
   getProfile = () =>
-   fetch(proxyUrl + PROFILE_API_URL)
-  .then(response => response.json());
+   fetch(proxyUrl + PROFILE_API_URL,{
+      headers: {
+      'Content-Type': 'application/json' },
+      credentials:'include',
+      method: 'GET'
+      })
+        .then(function(response){
+     return response.json();
+
+});
 
 
    register = (nameandpin) => 
@@ -48,10 +59,23 @@ class UserService {
       body: JSON.stringify(nameandpin),
       headers: {
       'Content-Type': 'application/json' },
+      credentials:'include',
       method: 'POST'
       })
         .then(response =>
          response.json());
+
+   updateUser = (uid, user) => 
+    fetch(proxyUrl + USER_API_URL + '/' + uid, {
+      body: JSON.stringify(user),
+      headers: {
+      'Content-Type': 'application/json' },
+      credentials:'include',
+      method: 'PUT'
+      })
+        .then(response =>
+         response.json());
+
 }
 
 export default UserService;

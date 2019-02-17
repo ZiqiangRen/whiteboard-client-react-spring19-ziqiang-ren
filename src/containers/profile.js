@@ -12,15 +12,16 @@ class profile extends React.Component  {
     	online: true,
     	user: {},
     	firstname: "",
-    	lastname: ""
+    	lastname: "",
+    	updated: false,
+    	role: ""
     }
   }
 
 
   componentDidMount = () =>{
     this.userService.getProfile()
-              //.then(user => this.setState({user: user}, ()=>console.log(user)));
-
+              .then(user => this.setState({user: user}, ()=>console.log(user)));
     }
 
   componentDidUpdate =() =>
@@ -31,8 +32,6 @@ class profile extends React.Component  {
 	userLogout = () =>{
 		this.userService.logout();
 		this.setState({online: false});
-
-
 	}
 
 
@@ -51,6 +50,25 @@ class profile extends React.Component  {
 	     })		
 	}
 
+	setRole = (event)=>
+	{
+		this.setState({
+			role: event.target.value
+		})
+	}
+
+	updateUser = () =>{
+		this.state.user.firstname = this.state.firstname;
+		this.state.user.lastname = this.state.lastname;
+		this.state.user.role = this.state.role;
+		this.userService.updateUser(this.state.user.id, this.state.user).then(()=>this.setState({updated: true}));
+	}
+
+	closeIt = () =>
+	{
+		this.setState({updated: false})
+	}
+
 
 render(){
 	if(this.state.online === false){
@@ -60,20 +78,20 @@ render(){
 return (
 <div className="container">
       <h1>Profile</h1>
-      <form>
 
-        <div className="alert alert-success" id="buttonAlert">
-          <button type="button" id="re" class="close"  aria-label="Close">
+{        this.state.updated &&
+	<div className="alert alert-success" id="buttonAlert">
+          <button onClick={this.closeIt} className="close"  aria-label="Close">
             <span aria-hidden="false">&times;</span>
         </button>
           <strong>Success!</strong> You just updated your profile.
-        </div>
+        </div>}
 
 
         <div className="form-group row">
           <label className="col-sm-2 col-form-label" for="username">UserName:</label>
           <div className="col-sm-10">
-            <input type="text" className="form-control" val={this.state.user.username} readonly/>
+            <input type="text" className="form-control" value={this.state.user.username} readOnly/>
           </div>
         </div>
 
@@ -95,10 +113,10 @@ return (
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Role:</label>
           <div className="col-sm-10">
-            <select className="form-control" val={this.state.user.role}>
-		        <option val="Student">Student</option>
-		        <option val="Admin">Admin</option>
-		        <option val="Faculty">Faculty</option>
+            <select onChange={this.setRole} className="form-control" default={this.state.user.role==""? "Student": this.state.user.role}>
+		        <option value="Student">Student</option>
+		        <option value="Admin">Admin</option>
+		        <option value="Faculty">Faculty</option>
       		</select>
           </div>
         </div>
@@ -121,10 +139,6 @@ return (
 	        	</a>
           </div>
         </div>
-
-
-
-      </form>
     </div>
 
 	)}

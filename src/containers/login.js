@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import UserService from '../services/UserService'
-
+import { Redirect } from 'react-router';
 
 class login extends React.Component  {
 	constructor(props) {
@@ -9,7 +9,8 @@ class login extends React.Component  {
     this.userService = new UserService()
     this.state = {
     	username: "",
-    	password: ""
+    	password: "",
+    	online: false
     }
   }
 
@@ -26,6 +27,7 @@ class login extends React.Component  {
 					alert("Username or password is wrong!");
 				}else{
 					console.log(user);
+					this.setState({online: true});
 				}}
 
 
@@ -46,6 +48,9 @@ class login extends React.Component  {
 
 
 render(){
+	if(this.state.online==true){
+		return (<Redirect to="/table" />);
+	}else{
 
 return (
 
@@ -96,7 +101,7 @@ return (
 	   </form>
 	</div>
 )
-}
+}}
 
 }
 export default login;

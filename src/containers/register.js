@@ -34,9 +34,7 @@ class register extends React.Component {
 					this.setState({
 						online: true
 					});
-					this.userService.getProfile()
-              			.then(user =>console.log(user));
-					//return (<Redirect to="/profile" />);
+					
 				}}
 
 	nameChanged  = (event)=> {
@@ -61,7 +59,9 @@ class register extends React.Component {
 
 
 render(){
-
+if(this.state.online==true){
+	return (<Redirect to="/table" />);
+}
 
 return (
 
