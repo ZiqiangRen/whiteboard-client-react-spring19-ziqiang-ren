@@ -21,8 +21,9 @@ class UserService {
   login = (nameandpin) => 
     fetch(proxyUrl + LOGIN_API_URL, {
       body: JSON.stringify(nameandpin),
-      headers: {
-      'Content-Type': 'application/json' },
+      headers: 
+          {
+          'Content-Type': 'application/json' },
       credentials:'include',
       method: 'POST'
       })
