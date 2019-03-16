@@ -1,10 +1,11 @@
 //const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 const proxyUrl = ''
-const USER_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/user';
-const LOGIN_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/login';
-const LOGOUT_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/logout';
-const REGISTER_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/register';
-const PROFILE_API_URL = 'http://powerful-beach-47172.herokuapp.com/api/profile';
+//'https://powerful-beach-47172.herokuapp.com/api/user';
+const USER_API_URL = "http://localhost:8080/api/user"
+const LOGIN_API_URL = "http://localhost:8080/api/login"
+const LOGOUT_API_URL = "http://localhost:8080/api/logout"
+const REGISTER_API_URL = "http://localhost:8080/api/register"
+const PROFILE_API_URL = "http://localhost:8080/api/profile"
 class UserService {
 
   findAllUsers = () =>
